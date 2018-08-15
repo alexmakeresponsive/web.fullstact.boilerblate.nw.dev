@@ -1,0 +1,96 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between">
+                <div>
+                    <a href="/artist/new" class="btn btn-primary">Add artist</a>
+                </div>
+                <div>
+                    <%- partial('../alerts/alerts1.ejs') -%>
+                </div>
+            </div>
+
+            <p>&nbsp;</p>
+        </div>
+        <div class="col-12">
+            <h2>Artists table</h2>
+            <p>&nbsp;</p>
+            <div id="tableArtistsWrapper">
+                <table class="table" id="tableArtists">
+                <col width="50">
+                <col width="150">
+                <col width="150">
+                <col width="420">
+                <col width="150">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Artist</th>
+                    <th scope="col">Country</th>
+                    <th scope="col">Genre</th>
+                    <th scope="col">Action</th>
+                </tr>
+                </thead>
+                <tbody id="tableArtistsTbody">
+
+
+                <% artists.forEach(function(artist, i){ %>
+                <tr class="tableRow tableRowAnimate op1">
+                    <th scope="row">
+                        <div><%= i + 1 %></div>
+                    </th>
+                    <td>
+                        <div><%= artist.name %></div>
+                    </td>
+                    <td>
+                        <div><%= artist.origin.country %></div>
+                    </td>
+                    <td>
+                        <div><%= artist.genres %></div>
+                    </td>
+                    <td>
+                        <div class="actions">
+                            <a href="/artist<%= '/' + artist.id %>" class="btn btn-primary">Edit</a>
+                            <button type="button" class="btn btn-primary">
+                                <span style="display: none;"><%= artist.id %></span>
+                                <svg width="16" height="16" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1490 1322q0 40-28 68l-136 136q-28 28-68 28t-68-28l-294-294-294 294q-28 28-68 28t-68-28l-136-136q-28-28-28-68t28-68l294-294-294-294q-28-28-28-68t28-68l136-136q28-28 68-28t68 28l294 294 294-294q28-28 68-28t68 28l136 136q28 28 28 68t-28 68l-294 294 294 294q28 28 28 68z" fill="#fff"/></svg>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                <% }); %>
+
+                <tr>
+                    <td colspan="6">
+                        <div id="tableArtistsEmptyText" class="text-center  tableRowAnimate" style="display: <%= tableArtistsEmptyText.display %>;">
+                            Artists not found
+                        </div>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+            </div>
+
+
+
+            <nav aria-label="">
+                <ul class="pagination">
+                    <!--<li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1">Previous</a>
+                    </li>-->
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item ">
+                        <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="page-item "><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">Next</a>
+                    </li>
+                </ul>
+            </nav>
+
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,40 @@
+<h3>
+    <%= pageContent.formTitle %>
+</h3>
+
+<p>
+
+</p>
+
+<form id="form">
+
+    <input name="id" type="hidden" value="<%= artist.id %>">
+
+    <% formFields.forEach(function(field, i){ %>
+    <!--input-->
+    <div class="form-group">
+        <label><%= field.fieldLabel %></label>
+        <input type="text"
+               name="<%= field.fieldName %>"
+
+
+                <% if ( artist[field.fieldName] === undefined && field.fieldName==='city') { %>
+                    value="<%= artist.origin.city %>"
+                <% } %>
+
+                <% if ( artist[field.fieldName] === undefined && field.fieldName==='country') { %>
+                    value="<%= artist.origin.country %>"
+                <% } %>
+
+                <% if ( artist[field.fieldName] ) { %>
+                    value="<%= artist[field.fieldName] %>"
+                <% } %>
+
+               class="form-control">
+        <small class="form-text text-muted"><%= field.smallText %></small>
+    </div>
+    <!--input-->
+    <% }); %>
+
+    <button type="submit" class="btn btn-primary"><%= pageContent.butonText %></button>
+</form>

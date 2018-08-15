@@ -1,0 +1,19 @@
+<%- partial('./partials/bodyBefore.ejs') -%>
+
+<%- partial('../partials/header/header.ejs') -%>
+
+
+<div class="pageWrapper">
+
+    <% if (page === 'artists') { %>
+        <%- partial('../partials/body/artists.ejs') -%>
+    <% } %>
+
+    <% if (page === 'index') { %>
+    <%- partial('../partials/body/index.ejs') -%>
+    <% } %>
+
+</div>
+
+
+<%- partial('./partials/bodyAfter.ejs') -%>
