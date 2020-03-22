@@ -1,9 +1,9 @@
-var formFields  = require('./dist/backend/data/formfields');
-var artistsData = require('./dist/backend/data/artists');
+var data = {
+    pages: {
+      works: require('./data/works')
+    }
+};
 
-
-var idGenerator = require('./logic/idgenerator');
-var dynamicField = require('./logic/dynamicfield');
 
 
 var express = require('express');
@@ -18,107 +18,18 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 
 
-app.use(express.static(__dirname +'/assets'));
-app.use(express.static(__dirname + '/design'));
-app.use(express.static(__dirname + '/logic'));
+app.use( express.static(__dirname +'/../public') );
 
-
+// console.log( __dirname +'/../public' );
 
 
 //CRUD
-//ADD
-app.post('/artist/add', function (req, res) {
-
-    console.log('ADD NEW ARTIST');
-
-    var fields = req.body;
-
-    var artist = {
-        id: idGenerator(),
-            name: fields.name,
-        members: [
-            fields.members
-        ],
-        website: fields.website,
-        genres: [
-            fields.genres
-        ],
-        origin: {
-            country: fields.country,
-            city: fields.city
-        }
-    };
-
-    artistsData.push(artist);
-
-    // console.log(artistsData);
-
-
-    res.send('form sended ! Action method: ' + req.method);
-});
-
-//UPDATE
-app.put('/artist/update', function (req, res) {
-
-    console.log('UPDATE ARTIST');
-
-
-    var fields = req.body;
-
-    var artist = {
-        id: Number(fields.id),
-        name: fields.name,
-        members: [
-            fields.members
-        ],
-        website: fields.website,
-        genres: [
-            fields.genres
-        ],
-        origin: {
-            country: fields.country,
-            city: fields.city
-        }
-    };
-
-    var findedArtistIndex = artistsData.findIndex(function (artistData) {
-        return artistData.id === artist.id
-    });
-
-    artistsData[findedArtistIndex] = artist;
-
-    res.send('form sended ! Action method: ' + req.method);
-});
-
-//DELETE
-app.delete('/artist/delete', function (req, res) {
-
-    console.log('DELETE ARTIST');
-
-    var artistId = req.body.id;
-
-    // console.log(artistId);
-
-    var findedArtistIndex = artistsData.findIndex(function (artistData) {
-        return artistData.id === artistId
-    });
-
-     artistsData.splice(findedArtistIndex, 1);
-
-     console.log(artistsData);
-
-    res.status(200).send('Artist # ' + artistId + ' deleted! Action method: ' + req.method);
-});
-
-
-
-
 
 
 
 
 //Templates
-app.set('views', './frontend/');
+app.set('views', __dirname + '/templates/');
 app.engine('ejs', require('ejs-locals'));
 app.set('view engine', 'ejs');
 
@@ -129,12 +40,12 @@ app.set('view engine', 'ejs');
 
 //Routes
 app.get('/', function (req, res) {
-    res.render('index', {
-        page: 'index'
+    res.render('home', {
+        page: 'Home page'
     });
 });
 
-app.get('/artists', function (req, res) {
+app.get('/works', function (req, res) {
 
     // dynamicField();
     var tableArtistsEmptyTextDisplay;
@@ -156,7 +67,7 @@ app.get('/artists', function (req, res) {
     });
 });
 
-app.get('/artist/:id', function (req, res) {
+app.get('/works/:id', function (req, res) {
 
     var artistId = Number(req.params.id);
 

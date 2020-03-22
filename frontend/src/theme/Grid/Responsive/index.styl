@@ -1,0 +1,111 @@
+@require 'variables.styl'
+
+//Containers
+container-fluid()
+  lost-center 100%
+
+container()
+  for pointName, pointValue in gridBreakpoints
+    @media (min-width pointValue)
+      lost-center containerMaxWidths[pointName]
+
+container-column(gridBreakpoint)
+  @media (min-width gridBreakpoints[gridBreakpoint])
+    lost-flex-container: column;
+
+container-row(gridBreakpoint)
+  @media (min-width gridBreakpoints[gridBreakpoint])
+    lost-flex-container: row;
+
+//Alignment
+container-align(gridBreakpoint, alignName)
+  @media (min-width gridBreakpoints[gridBreakpoint])
+    lost-align: alignName;
+
+//Cols width
+@media screen and (max-width: 575px)
+  .grid
+    .grid-fluid
+      .col
+        padding-left 0
+        padding-right: 0
+
+col-xs(gridColumnValue)
+  denominator = gridColumnsCount/gridColumnValue
+  @media (min-width gridBreakpoints['xs'])
+    lost-column 1/denominator
+    padding-left: 15px
+    padding-right: 15px
+    box-sizing border-box
+
+col-sm(gridColumnValue)
+  denominator = gridColumnsCount/gridColumnValue
+  @media (min-width gridBreakpoints['sm'])
+    lost-column 1/denominator
+
+col-md(gridColumnValue)
+  denominator = gridColumnsCount/gridColumnValue
+  @media (min-width gridBreakpoints['md'])
+    lost-column 1/denominator
+
+col-lg(gridColumnValue)
+  denominator = gridColumnsCount/gridColumnValue
+  @media (min-width gridBreakpoints['lg'])
+    lost-column 1/denominator
+
+col-xl(gridColumnValue)
+  denominator = gridColumnsCount/gridColumnValue
+  @media (min-width gridBreakpoints['xl'])
+    lost-column 1/denominator
+
+//Cols offset
+col-xs-offset(gridColumnOffset)
+  denominator = gridColumnsCount/gridColumnOffset
+  @media (min-width gridBreakpoints['xs'])
+    lost-offset 1/denominator
+
+col-sm-offset(gridColumnOffset)
+  denominator = gridColumnsCount/gridColumnOffset
+  @media (min-width gridBreakpoints['sm'])
+    lost-offset 1/denominator
+
+col-md-offset(gridColumnOffset)
+  denominator = gridColumnsCount/gridColumnOffset
+  @media (min-width gridBreakpoints['md'])
+    lost-offset 1/denominator
+
+col-lg-offset(gridColumnOffset)
+  denominator = gridColumnsCount/gridColumnOffset
+  @media (min-width gridBreakpoints['lg'])
+    lost-offset 1/denominator
+
+col-xl-offset(gridColumnOffset)
+  denominator = gridColumnsCount/gridColumnOffset
+  @media (min-width gridBreakpoints['xl'])
+    lost-offset 1/denominator
+
+//Cols move
+col-xs-move(gridColumnMoveValue)
+  denominator = gridColumnsCount/gridColumnMoveValue
+  @media (min-width gridBreakpoints['xs'])
+    lost-move: 1/denominator;
+
+col-sm-move(gridColumnMoveValue)
+  denominator = gridColumnsCount/gridColumnMoveValue
+  @media (min-width gridBreakpoints['sm'])
+    lost-move: 1/denominator;
+
+col-md-move(gridColumnMoveValue)
+  denominator = gridColumnsCount/gridColumnMoveValue
+  @media (min-width gridBreakpoints['md'])
+    lost-move: 1/denominator;
+
+col-lg-move(gridColumnMoveValue)
+  denominator = gridColumnsCount/gridColumnMoveValue
+  @media (min-width gridBreakpoints['lg'])
+    lost-move: 1/denominator;
+
+col-xl-move(gridColumnMoveValue)
+  denominator = gridColumnsCount/gridColumnMoveValue
+  @media (min-width gridBreakpoints['xl'])
+    lost-move: 1/denominator;
